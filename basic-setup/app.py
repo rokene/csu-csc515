@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 
 import cv2
-
-# Create a named window with normal settings
-cv2.namedWindow('Brain Image', cv2.WINDOW_NORMAL)
+import os
 
 # Load and display the image
 image = cv2.imread('brain.jpg')
 cv2.imshow('Brain Image', image)
 
-print('Press "q" to quit.')
+# Save a copy of the image to the home directory
+home_directory = os.path.expanduser("~")
+save_path = os.path.join(home_directory, "brain_image_copy.jpg")
+cv2.imwrite(save_path, image)
+print(f"Image saved to {save_path}")
 
-# Keep the window open until 'q' is pressed
-while True:
-    if cv2.waitKey(1) & 0xFF == ord('q'):  # Press 'q' to close the window
-        break
+# Wait until the window is closed manually
+cv2.waitKey(0)
 
-# Close all OpenCV windows after exiting the loop
+# Close all OpenCV windows (for cleanup)
 cv2.destroyAllWindows()
