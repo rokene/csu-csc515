@@ -25,3 +25,9 @@ For options `make`
 Setup: `basic-cv2-setup`
 
 Execute: `basic-cv2`
+
+## Bank Note Analysis
+
+Setup: `make banknote-setup`
+
+Execute: `make banknote`

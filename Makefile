@@ -6,6 +6,8 @@ PP=$(CURRENT_DIR)/portfolio-project
 
 BASIC_CV2=$(CURRENT_DIR)/basic-setup
 
+BANKNOTE=$(CURRENT_DIR)/bank-notes
+
 
 .PHONY: help
 help:
@@ -40,3 +42,16 @@ basic-cv2: ## executes basic cv2 setup
 	@cd $(BASIC_CV2) && \
 		. venv/bin/activate && \
 		./app.py
+
+.PHONY: banknote-setup
+banknote-setup: ## setup banknote project
+	@cd $(BANKNOTE) && python3 -m venv venv && \
+		. venv/bin/activate && \
+		pip install --upgrade pip && \
+		pip install -r requirements.txt
+
+.PHONY: banknote
+banknote: ## executes banknote project
+	@cd $(BANKNOTE) && \
+		. venv/bin/activate && \
+		jupyter notebook
