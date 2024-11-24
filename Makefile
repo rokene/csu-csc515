@@ -8,6 +8,8 @@ BASIC_CV2=$(CURRENT_DIR)/basic-setup
 
 BANKNOTE=$(CURRENT_DIR)/bank-notes
 
+PUPPY=$(CURRENT_DIR)/puppy-colors
+
 
 .PHONY: help
 help:
@@ -55,3 +57,17 @@ banknote: ## executes banknote project
 	@cd $(BANKNOTE) && \
 		. venv/bin/activate && \
 		jupyter notebook
+
+.PHONY: puppy-colors-setup
+puppy-colors-setup: ## setup puppy color project
+	@cd $(PUPPY) && python3 -m venv venv && \
+		. venv/bin/activate && \
+		pip install --upgrade pip && \
+		pip install -r requirements.txt
+
+.PHONY: puppy-colors
+puppy-colors: ## executes puppy color project
+	@cd $(PUPPY) && \
+		. venv/bin/activate && \
+		jupyter notebook
+	

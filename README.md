@@ -31,3 +31,9 @@ Execute: `basic-cv2`
 Setup: `make banknote-setup`
 
 Execute: `make banknote`
+
+## Puppy Color Analysis
+
+Setup: `make puppy-colors-setup`
+
+Execute: `make puppy-colors`
