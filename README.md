@@ -10,6 +10,12 @@ Computer vision
 
 # Setup
 
+Modify the [Makefile](./Makefile) to use the correct python under CONFIG.
+
+## X Forwarding
+
+> Optional: only if using remote linux vm
+
 GTK support: `sudo apt install -y libgtk2.0-dev pkg-config libcanberra-gtk-module libcanberra-gtk3-module`
 
 > WSL may already provide default x display forwarding configurations
