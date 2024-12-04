@@ -4,6 +4,8 @@ CURRENT_DIR := $(CURDIR)
 
 PP=$(CURRENT_DIR)/portfolio-project
 
+PP_DRAW=drawing.py
+
 BASIC_CV2=$(CURRENT_DIR)/basic-setup
 
 BANKNOTE=$(CURRENT_DIR)/bank-notes
@@ -18,19 +20,18 @@ help:
 .PHONY: pp-setup
 pp-setup: ## setup dependencies and precursors for portfolio project
 	@echo "pp: setting up portfolio project virtual env"
+	@cd $(PP) && python3 -m venv venv && \
+		. venv/bin/activate && \
+		pip install --upgrade pip && \
+		pip install -r requirements.txt
 
-.PHONY: pp-test
-pp-test: ## executes test portfolio project
-	@echo "pp: testing portfolio project dependencies"
-
-.PHONY: pp
-pp: ## executes portfolio project
-	@echo "checking if gpu libs are available"; make pp-test
-	@echo "pp: starting portfolio project"
+.PHONY: pp-draw
+pp-draw: ## executes portfolio project Annotation Draw
+	@echo "pp: starting portfolio project annotation drawing"
 	@cd $(PP) && \
 		. venv/bin/activate && \
-		$(PP)/$(PP_APP)
-	@echo "pp: completed portfolio project"
+		$(PP)/$(PP_DRAW)
+	@echo "pp: completed portfolio project annotation drawing"
 
 .PHONY: basic-cv2-setup
 basic-cv2-setup: ## setup bsic cv2 project
