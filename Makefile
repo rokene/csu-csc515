@@ -16,6 +16,8 @@ BANKNOTE=$(CURRENT_DIR)/bank-notes
 
 PUPPY=$(CURRENT_DIR)/puppy-colors
 
+FILTERING=$(CURRENT_DIR)/filtering
+FILTERING_APP=app.py
 
 ## PYTHON CONFIG
 
@@ -94,3 +96,16 @@ puppy-colors: ## executes puppy color project
 	@cd $(PUPPY) && \
 		. $(VNV_ACTIVATE) && \
 		jupyter notebook
+
+.PHONY: filtering-setup
+filtering-setup: ## setup filtering project
+	@cd $(FILTERING) && $(PYTHON_CONFIG) -m venv venv && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_PIP_CONFIG) install --upgrade pip && \
+		$(PYTHON_PIP_CONFIG) install -r requirements.txt
+
+.PHONY: filtering
+filtering: ## executes filtering project
+	@cd $(FILTERING) && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_CONFIG) $(FILTERING_APP)
