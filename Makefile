@@ -19,6 +19,9 @@ PUPPY=$(CURRENT_DIR)/puppy-colors
 FILTERING=$(CURRENT_DIR)/filtering
 FILTERING_APP=app.py
 
+MORPHING=$(CURRENT_DIR)/morph-text
+MORPHING_APP=app.py
+
 ## PYTHON CONFIG
 
 
@@ -109,3 +112,16 @@ filtering: ## executes filtering project
 	@cd $(FILTERING) && \
 		. $(VNV_ACTIVATE) && \
 		$(PYTHON_CONFIG) $(FILTERING_APP)
+
+.PHONY: morph-setup
+morph-setup: ## setup morphing project
+	@cd $(MORPHING) && $(PYTHON_CONFIG) -m venv venv && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_PIP_CONFIG) install --upgrade pip && \
+		$(PYTHON_PIP_CONFIG) install -r requirements.txt
+
+.PHONY: morph
+morph: ## executes morphing project
+	@cd $(MORPHING) && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_CONFIG) $(MORPHING_APP)
