@@ -43,3 +43,10 @@ Execute: `make banknote`
 Setup: `make puppy-colors-setup`
 
 Execute: `make puppy-colors`
+
+## Filtering
+
+Setup: `make filtering-setup`
+
+Execute: `make filtering`
+
