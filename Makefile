@@ -22,6 +22,9 @@ FILTERING_APP=app.py
 MORPHING=$(CURRENT_DIR)/morph-text
 MORPHING_APP=app.py
 
+ADAPTIVE_THRESHOLDING=$(CURRENT_DIR)/adaptive-thresholding
+ADAPTIVE_THRESHOLDING_APP=app.py
+
 ## PYTHON CONFIG
 
 
@@ -125,3 +128,16 @@ morph: ## executes morphing project
 	@cd $(MORPHING) && \
 		. $(VNV_ACTIVATE) && \
 		$(PYTHON_CONFIG) $(MORPHING_APP)
+
+.PHONY: adaptive-thresholding-setup
+adaptive-thresholding-setup: ## setup adaptive thresholding
+	@cd $(ADAPTIVE_THRESHOLDING) && $(PYTHON_CONFIG) -m venv venv && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_PIP_CONFIG) install --upgrade pip && \
+		$(PYTHON_PIP_CONFIG) install -r requirements.txt
+
+.PHONY: adaptive-thresholding
+adaptive-thresholding: ## executes adaptive thresholding
+	@cd $(ADAPTIVE_THRESHOLDING) && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_CONFIG) $(ADAPTIVE_THRESHOLDING_APP)
