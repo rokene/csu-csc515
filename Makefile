@@ -25,6 +25,9 @@ MORPHING_APP=app.py
 ADAPTIVE_THRESHOLDING=$(CURRENT_DIR)/adaptive-thresholding
 ADAPTIVE_THRESHOLDING_APP=app.py
 
+EDGE=$(CURRENT_DIR)/edge
+EDGE_APP=app.py
+
 ## PYTHON CONFIG
 
 
@@ -141,3 +144,16 @@ adaptive-thresholding: ## executes adaptive thresholding
 	@cd $(ADAPTIVE_THRESHOLDING) && \
 		. $(VNV_ACTIVATE) && \
 		$(PYTHON_CONFIG) $(ADAPTIVE_THRESHOLDING_APP)
+
+.PHONY: aedge-setup
+edge-setup: ## setup edge
+	@cd $(EDGE) && $(PYTHON_CONFIG) -m venv venv && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_PIP_CONFIG) install --upgrade pip && \
+		$(PYTHON_PIP_CONFIG) install -r requirements.txt
+
+.PHONY: edge
+edge: ## executes edge
+	@cd $(EDGE) && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_CONFIG) $(EDGE_APP)
