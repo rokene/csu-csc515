@@ -7,6 +7,9 @@
 
 CURRENT_DIR := $(CURDIR)
 
+PP_FINAL=$(CURRENT_DIR)/portfolio-project-final
+PP_FINAL_APP=app.py
+
 PP=$(CURRENT_DIR)/portfolio-project
 PP_DRAW=drawing.py
 
@@ -51,12 +54,28 @@ VNV_ACTIVATE=venv/Scripts/activate
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*' $(MAKEFILE_LIST) | sort
 
+.PHONY: pp-final
+pp-final: ## executes portfolio project license recognition
+	@echo "pp: starting portfolio project final"
+	@cd $(PP_FINAL) && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_CONFIG) $(PP_FINAL)/$(PP_FINAL_APP)
+	@echo "pp: completed portfolio project final"
+
+.PHONY: pp-final-setup
+pp-final-setup: ## setup dependencies and precursors for portfolio project final
+	@echo "setting up portfolio project final virtual env"
+	@cd $(PP_FINAL) && $(PYTHON_CONFIG) -m venv venv && \
+		. $(VNV_ACTIVATE) && \
+		$(PYTHON_PIP_CONFIG) install --upgrade pip && \
+		$(PYTHON_PIP_CONFIG) install -r requirements.txt
+
 .PHONY: pp-setup
 pp-setup: ## setup dependencies and precursors for portfolio project
 	@echo "pp: setting up portfolio project virtual env"
 	@cd $(PP) && $(PYTHON_CONFIG) -m venv venv && \
 		. $(VNV_ACTIVATE) && \
-		$(PYTHON_PIP_CONFIG) install --upgrade $(PYTHON_PIP_CONFIG) && \
+		$(PYTHON_PIP_CONFIG) install --upgrade pip && \
 		$(PYTHON_PIP_CONFIG) install -r requirements.txt
 
 .PHONY: pp-draw
