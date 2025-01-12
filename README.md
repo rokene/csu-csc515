@@ -50,3 +50,8 @@ Setup: `make filtering-setup`
 
 Execute: `make filtering`
 
+## Final Portfolio Project
+
+Setup: `make pp-final-setup`
+
+Execute: `make pp-final`
